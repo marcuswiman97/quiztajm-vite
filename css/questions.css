@@ -1,0 +1,507 @@
+/* ========================================
+   QUIZ DESIGN - MOBIL & DESKTOP
+======================================== */
+
+body.quiz-page {
+  --color-primary: #5620a8;
+  --color-secondary: #ffffff;
+  --color-text: #241432;
+  --color-text-muted: #655a70;
+
+  background: var(--background-gradient-questions);
+  background-attachment: fixed;
+  font-family: "DM Sans", sans-serif;
+  color: var(--color-text);
+  min-height: 100vh;
+}
+
+/* ========================================
+     HEADER & PROGRESS
+  ======================================== */
+
+.quiz-page #timer-progress {
+  width: calc(100% - 40px);
+  max-width: 970px;
+  margin: 0 auto;
+}
+
+.quiz-page .timer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 28px 0 0;
+}
+
+.quiz-page .quiz-logo {
+  display: block;
+  width: 140px;
+  height: auto;
+  margin: 8px 0 0;
+  max-width: none;
+}
+
+.quiz-page .cancel-timer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+}
+
+.quiz-page .quiz-timer {
+  display: flex;
+  gap: 10px;
+  padding: 12px 16px;
+  min-height: 48px;
+  background: #fffcf8;
+  border: 2px solid #ede4ff;
+  border-radius: 14px;
+  color: #5620a8;
+}
+
+.quiz-page .time-left {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.quiz-page #cancel-button {
+  margin: 0;
+  padding: 10px 16px;
+  min-height: 44px;
+  border: 2px solid #8f8099;
+  border-radius: 12px;
+  background: #fffcf8;
+  font-size: 15px;
+}
+
+.quiz-page #progress {
+  margin-top: 28px;
+}
+
+.quiz-page .quiz-progress {
+  padding: 0;
+}
+
+.quiz-page .progress-info {
+  margin: 0 0 10px;
+}
+
+.quiz-page #question-count {
+  font-size: 15px;
+  color: #5620a8;
+}
+
+.quiz-page #questions-left {
+  font-size: 15px;
+  padding: 7px 12px;
+  border-radius: 10px;
+}
+
+.quiz-page .progress-bar {
+  height: 8px;
+}
+
+.quiz-page .progress-fill {
+  background: #5620a8;
+}
+
+/* ========================================
+     MAIN
+  ======================================== */
+
+.quiz-page .quiz-main {
+  width: calc(100% - 40px);
+  max-width: 970px;
+  margin: 0 auto;
+  padding: 32px 0 80px;
+}
+
+.quiz-page .quiz-main form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ========================================
+     QUESTION CARD
+  ======================================== */
+
+.quiz-page .question-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 24px;
+
+  width: 100%;
+  min-height: 240px;
+  padding: 32px;
+  overflow: hidden;
+
+  background: #fffcf8;
+  border: 1px solid #e8ddec;
+  border-radius: 32px;
+  box-shadow: 9px 10px 0 #fcd34d;
+}
+
+/* Rosa dekoration uppe till vänster */
+
+.quiz-page .question-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 8px;
+  border-radius: 0 0 12px 0;
+  background: #c81e67;
+}
+
+/* Lila ring nere till höger */
+
+.quiz-page .question-container::after {
+  content: "";
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  right: -38px;
+  bottom: -38px;
+
+  border: 18px solid #ede4ff;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.quiz-page .question-container .question-category {
+  position: relative;
+  z-index: 1;
+
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #c81e67;
+}
+
+.quiz-page .question-container .question-titel {
+  position: relative;
+  z-index: 1;
+
+  font-family: "Fredoka", sans-serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: #241432;
+}
+
+/* ========================================
+     ANSWERS
+  ======================================== */
+
+.quiz-page .answers-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.quiz-page .answers-container .answer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  width: 100%;
+  min-height: 76px;
+  height: auto;
+  padding: 12px 16px;
+
+  background: #fffcf8;
+  border: 2px solid #8f8099;
+  border-radius: 20px;
+
+  color: #241432;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+
+/* Ta bort gamla padding från wrappers */
+
+.quiz-page .answers-container .answer .order-number-wrapper,
+.quiz-page .answers-container .answer .check-wrapper {
+  padding: 0;
+  flex-shrink: 0;
+}
+
+/* 1 / X / 2 */
+
+.quiz-page .answers-container .answer .order-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 46px;
+  height: 46px;
+  padding: 0;
+
+  background: #ede4ff;
+  color: #5620a8;
+  border-radius: 14px;
+
+  font-family: "Fredoka", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* Svarstext vänsterställd */
+
+.quiz-page .answers-container .answer .titel {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+
+  font-family: "DM Sans", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: left;
+  color: #241432;
+}
+
+/* Radiocirkel */
+
+.quiz-page .answers-container .answer .check-wrapper {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+}
+
+.quiz-page .answers-container .answer .check {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #8f8099;
+  border-radius: 50%;
+  background: transparent;
+}
+
+/* Hover */
+
+.quiz-page .answers-container .answer:hover {
+  opacity: 1;
+  border-color: #5620a8;
+}
+
+/* Valt svar */
+
+.quiz-page .answers-container .answer.answer-selected {
+  min-height: 98px;
+  padding-bottom: 36px;
+
+  background: #ede4ff;
+  border-color: #5620a8;
+}
+
+.quiz-page .answer.answer-selected .order-number {
+  background: #5620a8;
+  color: #ffffff;
+}
+
+.quiz-page .answer.answer-selected .check {
+  border-color: #5620a8;
+  background: #5620a8;
+  box-shadow: inset 0 0 0 4px #ede4ff;
+}
+
+.quiz-page .answer.answer-selected::after {
+  content: "Valt";
+  position: absolute;
+  left: 76px;
+  bottom: 12px;
+  color: #5620a8;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Rätt och fel efter bekräftelse */
+
+.quiz-page .answer.answer-correct {
+  border-color: #176b4a !important;
+}
+
+.quiz-page .answer.answer-wrong {
+  border-color: #a62a2a !important;
+}
+
+/* Fokus för tangentbord */
+
+.quiz-page .answer:focus-visible,
+.quiz-page .submit-btn:focus-visible {
+  outline: 3px solid #0b63ce;
+  outline-offset: 3px;
+}
+
+/* ========================================
+     CONFIRM BUTTON
+  ======================================== */
+
+.quiz-page .submit-container {
+  margin-top: 8px;
+}
+
+.quiz-page .submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  width: 100%;
+  min-height: 64px;
+  height: auto;
+  padding: 16px 24px;
+
+  border: none;
+  border-radius: 16px;
+
+  background: #e5e0e8;
+  color: #857c8e;
+  box-shadow: 0 7px 0 #c6becb;
+
+  font-family: "DM Sans", sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.quiz-page .submit-btn span {
+  font: inherit;
+  color: inherit;
+}
+
+/* Lila knapp när ett svar har valts */
+
+.quiz-page #quiz-form:has(.answer-selected) .submit-btn {
+  background: #5620a8;
+  color: white;
+  box-shadow: 0 7px 0 #35106e;
+}
+
+.quiz-page .notice {
+  padding: 22px 0 0;
+  text-align: center;
+  font-size: 14px;
+  color: #655a70;
+}
+
+/* ========================================
+     TABLET & DESKTOP
+  ======================================== */
+
+@media (min-width: 768px) {
+  .quiz-page .timer-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+  }
+
+  .quiz-page .cancel-timer-container {
+    display: contents;
+  }
+
+  .quiz-page .timer-header > a {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+  }
+
+  .quiz-page #cancel-button {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+  }
+
+  .quiz-page .quiz-timer {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+  }
+
+  .quiz-page .quiz-main {
+    padding-top: 38px;
+  }
+
+  .quiz-page .question-container {
+    min-height: 260px;
+    padding: 36px;
+  }
+}
+
+/* ========================================
+     MOBILE
+  ======================================== */
+
+@media (max-width: 599px) {
+  .quiz-page .quiz-main,
+  .quiz-page #timer-progress {
+    width: calc(100% - 40px);
+  }
+
+  .quiz-page .question-container {
+    min-height: 235px;
+    padding: 28px 24px;
+    gap: 24px;
+  }
+
+  .quiz-page .question-container .question-titel {
+    font-size: clamp(27px, 7.5vw, 34px);
+  }
+
+  .quiz-page .answers-container .answer .titel {
+    font-size: 16px;
+  }
+
+  .quiz-page .quiz-main form {
+    gap: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quiz-page .answer,
+  .quiz-page .submit-btn {
+    transition: none;
+  }
+}
+
+/* Döljer quizets kontroller vid laddning och fel */
+.quiz-only[hidden] {
+  display: none !important;
+}
+
+/* Försök igen vid API-fel */
+.quiz-page #retry-button {
+  width: 100%;
+  min-height: 64px;
+  margin-top: 24px;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 16px;
+  background: var(--color-primary);
+  color: white;
+  box-shadow: 0 7px 0 #35106e;
+  font: inherit;
+  font-size: 19px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.quiz-page #retry-button:focus-visible {
+  outline: 3px solid #0b63ce;
+  outline-offset: 3px;
+}
+
+.quiz-page #retry-button[hidden] {
+  display: none !important;
+}

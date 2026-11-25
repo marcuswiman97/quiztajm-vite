@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Tajm | Frågor</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/timer.css" />
+    <link rel="stylesheet" href="../css/questions.css" />
+
+    <!-- Typsnitt -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fredoka:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- JavaScript -->
+    <script type="module" src="../js/timer.js" defer></script>
+    <script type="module" src="../js/questions.js" defer></script>
+  </head>
+
+  <body class="quiz-page">
+    <!-- Dekorationer -->
+    <div class="decoration-circle" aria-hidden="true"></div>
+    <div class="decoration-bar" aria-hidden="true"></div>
+
+    <!-- Header -->
+    <header id="timer-progress">
+      <div class="timer-header">
+        <!-- Logotyp -->
+        <a href="./index.html" aria-label="Quiz Tajm startsida">
+          <img src="../img/timer/logo.svg" alt="Quiz Tajm" class="quiz-logo" />
+        </a>
+
+        <!-- Timer och avbryt -->
+        <div class="cancel-timer-container">
+          <div class="quiz-timer quiz-only" role="timer" hidden>
+            <span id="timer-icon" aria-hidden="true">
+              <img src="../img/timer/timer.svg" alt="" />
+            </span>
+            <span class="time-left">04:00</span>
+          </div>
+
+          <button type="button" id="cancel-button">Avbryt</button>
+        </div>
+      </div>
+
+      <!-- Framsteg -->
+      <div id="progress" class="quiz-only" hidden>
+        <div class="quiz-progress">
+          <div class="progress-info">
+            <span id="question-count">Fråga 1 av 10</span>
+            <span id="questions-left">9 kvar</span>
+          </div>
+
+          <div
+            class="progress-bar"
+            role="progressbar"
+            aria-label="Quizets framsteg"
+            aria-valuemin="0"
+            aria-valuemax="10"
+            aria-valuenow="1"
+          >
+            <div class="progress-fill"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Quiz -->
+    <main class="quiz-main">
+      <form id="quiz-form">
+        <!-- Frågan fylls från API:et -->
+        <section class="question-container" aria-labelledby="question-titel">
+          <p class="question-category" id="question-category"></p>
+
+          <h1 class="question-titel" id="question-titel">Laddar frågor...</h1>
+        </section>
+
+        <!-- Svarsalternativen fylls från API:et -->
+        <div
+          class="answers-container quiz-only"
+          role="group"
+          aria-label="Svarsalternativ"
+          hidden
+        >
+          <!-- Svar 1 -->
+          <button class="answer" id="answer-1" type="button">
+            <span class="order-number-wrapper">
+              <span class="order-number">1</span>
+            </span>
+
+            <span class="titel" id="answer-titel-1"></span>
+
+            <span class="check-wrapper" aria-hidden="true">
+              <span class="check" id="check-1"></span>
+            </span>
+          </button>
+
+          <!-- Svar 2 -->
+          <button class="answer" id="answer-2" type="button">
+            <span class="order-number-wrapper">
+              <span class="order-number">X</span>
+            </span>
+
+            <span class="titel" id="answer-titel-2"></span>
+
+            <span class="check-wrapper" aria-hidden="true">
+              <span class="check" id="check-2"></span>
+            </span>
+          </button>
+
+          <!-- Svar 3 -->
+          <button class="answer" id="answer-3" type="button">
+            <span class="order-number-wrapper">
+              <span class="order-number">2</span>
+            </span>
+
+            <span class="titel" id="answer-titel-3"></span>
+
+            <span class="check-wrapper" aria-hidden="true">
+              <span class="check" id="check-3"></span>
+            </span>
+          </button>
+        </div>
+
+        <!-- Bekräfta svar -->
+        <div class="submit-container quiz-only" hidden>
+          <button class="submit-btn" id="submit" type="submit">
+            <span>Bekräfta svar</span>
+            <span aria-hidden="true">→</span>
+          </button>
+
+          <p class="notice">Du kan ändra ditt val innan du bekräftar.</p>
+        </div>
+      </form>
+
+      <button type="button" id="retry-button" hidden>Försök igen</button>
+    </main>
+
+    <!-- Modal för avslutat quiz -->
+    <div
+      id="time-up-modal"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="time-up-title"
+      hidden
+    >
+      <div class="modal-content">
+        <div class="timer-container" aria-hidden="true">
+          <svg
+            class="time-out-logo"
+            width="30"
+            height="30"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 7v5l3 2"></path>
+          </svg>
+        </div>
+
+        <p id="quiz-close-text">QUIZET ÄR AVSLUTAT</p>
+
+        <h2 id="time-up-title">Tiden är slut!</h2>
+
+        <h3 id="how-many-correct-answers">
+          <span class="correct-answer">0</span>
+          av
+          <span id="total-questions">10</span>
+          rätt
+        </h3>
+
+        <p id="how-fast"></p>
+
+        <button id="time-up-button" type="button">
+          Se resultat
+          <img src="../img/arrow-right-2.svg" alt="" />
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
